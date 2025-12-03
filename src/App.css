@@ -1,0 +1,125 @@
+main {
+  width: 90%;
+  margin: 40px auto 0;
+}
+
+@media (min-width: 768px) {
+  main {
+    width: 60%;
+    max-width: 900px;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h1 span:first-of-type {
+  background: linear-gradient(
+    to right,
+    var(--aqua-blue),
+    var(--sky-blue),
+    var(--light-purple)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h1 span:last-of-type {
+  color: var(--white);
+}
+
+.description {
+  color: var(--light-grey);
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.toggle-rules-btn {
+  color: var(--cyan);
+  background-color: transparent;
+  border: 2px solid var(--cyan);
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  margin: 40px auto;
+}
+
+.toggle-rules-btn:hover {
+  color: var(--white);
+  transition: 0.5s ease-in-out;
+}
+
+.container {
+  background-color: var(--transparent-dark-blue);
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.rules-container {
+  margin-bottom: 20px;
+}
+
+.rules-container h2 {
+  color: var(--cyan);
+  margin-bottom: 20px;
+}
+
+.rules-container li {
+  margin: 10px;
+  color: var(--light-grey);
+  font-size: 1.1rem;
+}
+
+.rules-container li::marker {
+  color: var(--light-purple);
+}
+
+.phrase-label {
+  display: block;
+  margin-bottom: 15px;
+  color: var(--light-grey);
+  font-size: 1.1rem;
+}
+
+.input-btn-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phrase-input,
+.phrase-input::placeholder {
+  color: var(--grey);
+}
+
+.phrase-input {
+  flex-grow: 2;
+  background-color: transparent;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid var(--light-grey);
+  color: var(--white);
+}
+
+.phrase-input:focus {
+  outline: 4px solid var(--sea-green);
+}
+
+.check-phrase-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, var(--cyan), var(--blue));
+  color: var(--white);
+  transition: all 0.2s;
+  font-size: 1.1rem;
+}
+
+.check-phrase-btn:hover {
+  background: linear-gradient(to right, #0891b2, #2563eb);
+}

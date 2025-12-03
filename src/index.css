@@ -5,3 +5,26 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --white: #ffffff;
+  --light-grey: #d6d6d6;
+  --cyan: #00d3f3;
+  --aqua-blue: #22d3ee;
+  --sky-blue: #60a5fa;
+  --blue: #3b82f6;
+  --light-purple: #a78bfa;
+  --sea-green: #008370;
+  --grey: #999999;
+  --transparent-dark-blue: #0f172a80;
+  --very-dark-blue: #0f172b;
+  --black: #000000;
+}
+
+body {
+  background: linear-gradient(to right, var(--black), var(--very-dark-blue));
+}
+
+button {
+  cursor: pointer;
+}

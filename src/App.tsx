@@ -9,19 +9,23 @@ function App() {
   }
 
   return (
-    <>
-      <h1>VowelChecker</h1>
-      <button onClick={handleToggleRules}>
+    <main>
+      <h1>
+        <span>Vowel</span> <span>Checker</span>
+      </h1>
+      <button className="toggle-rules-btn" onClick={handleToggleRules}>
         {isRulesShowing ? "Hide" : "Show"} Rules
       </button>
 
       {isRulesShowing && (
-        <div className="rules-container">
+        <div className="container rules-container">
           <h2>Challenge Rules</h2>
-          <li>
-            Given a string, determine whether the number of vowels in the first
-            half of the string is equal to the number of vowels in the second
-            half.
+          <p className="description">
+            Provide a word or phrase and check whether the number of vowels in
+            the first half of the string is equal to the number of vowels in the
+            second half.
+          </p>
+          <ul>
             <li>The string can contain any characters.</li>
             <li>
               The letters a, e, i, o, and u, in either uppercase or lowercase,
@@ -31,17 +35,29 @@ function App() {
               If there's an odd number of characters in the string, ignore the
               center character.
             </li>
-          </li>
+          </ul>
         </div>
       )}
 
-      <form className="phrase-container">
-        <label htmlFor="phrase">Provide a word, phrase or sentence.</label>
-        <input id="phrase" type="text" placeholder="e.g. racecar" required />
+      <form className="container phrase-container">
+        <label className="phrase-label" htmlFor="phrase">
+          Provide a word, phrase or sentence:
+        </label>
+        <div className="input-btn-container">
+          <input
+            className="phrase-input"
+            id="phrase"
+            type="text"
+            placeholder="e.g. racecar, Kitty Ipsum, I love to code"
+            required
+          />
 
-        <button type="button">Check</button>
+          <button className="check-phrase-btn" type="button">
+            Check
+          </button>
+        </div>
       </form>
-    </>
+    </main>
   );
 }
 
