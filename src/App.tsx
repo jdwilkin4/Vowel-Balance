@@ -32,6 +32,15 @@ function App() {
     setIsRulesShowing(!isRulesShowing);
   }
 
+  function getCenterCharacter() {
+    if (userInput.length % 2 === 0 || userInput === " ") {
+      return null;
+    }
+
+    const centerCharIndex = Math.floor(userInput.length / 2);
+    return userInput[centerCharIndex];
+  }
+
   function isInputEmpty() {
     return userInput === "";
   }
@@ -98,6 +107,7 @@ function App() {
     setResults((prev) => ({
       ...prev,
       isBalanced: isStrBalanced(userInput),
+      centerCharacter: getCenterCharacter(),
     }));
 
     setHasInvalidInput(false);
@@ -190,6 +200,13 @@ function App() {
               {results.secondHalfVowelCount}
             </p>
           </div>
+
+          {results.centerCharacter && (
+            <div className="center-character-ignored-container">
+              <p>Center character (ignored)</p>
+              <p>&ldquo; {results.centerCharacter} &rdquo;</p>
+            </div>
+          )}
 
           <div className="first-second-half-containers">
             <HalfStrContainer

@@ -139,7 +139,7 @@ h1 span:last-of-type {
 }
 
 .result-container {
-  margin: auto;
+  margin: 30px auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -149,7 +149,6 @@ h1 span:last-of-type {
   font-weight: bold;
   font-size: 1.125rem;
   backdrop-filter: blur(24px);
-  margin-top: 30px;
 }
 
 @media (min-width: 768px) {
@@ -184,4 +183,29 @@ h1 span:last-of-type {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.center-character-ignored-container {
+  background: linear-gradient(
+    to bottom right,
+    var(--cyan-soft),
+    var(--cyan-strong)
+  );
+  border: 1px solid var(--cyan-strong);
+  color: var(--light-grey);
+  width: 200px;
+  padding: 15px;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.center-character-ignored-container p {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.center-character-ignored-container p:last-of-type {
+  color: var(--cyan-deep);
+  font-size: 2rem;
+  margin-top: 15px;
 }
