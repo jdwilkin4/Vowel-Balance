@@ -34,7 +34,7 @@ function App() {
   }
 
   function getVowelCount(str: string) {
-    const vowels = new Set(["a", "e", "i", "o", "u"]);
+    const vowels = new Set(["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]);
     let vowelCount = 0;
 
     for (const char of str) {
@@ -47,14 +47,11 @@ function App() {
   }
 
   function isStrBalanced(str: string) {
-    const lowerCaseString = str.toLowerCase();
-    const middleIndex = Math.floor(lowerCaseString.length / 2);
+    const middleIndex = Math.floor(str.length / 2);
 
-    const firstHalfStr = lowerCaseString.slice(0, middleIndex);
+    const firstHalfStr = str.slice(0, middleIndex);
     const secondHalfStr =
-      lowerCaseString.length % 2 != 0
-        ? lowerCaseString.slice(middleIndex + 1)
-        : lowerCaseString.slice(middleIndex);
+      str.length % 2 != 0 ? str.slice(middleIndex + 1) : str.slice(middleIndex);
 
     setResults((prev) => ({
       ...prev,
