@@ -1,11 +1,32 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import "./App.css";
 
 function App() {
   const [isRulesShowing, setIsRulesShowing] = useState(false);
+  const [hasInvalidInput, setHasInvalidInput] = useState<boolean>(false);
+  const [userInput, setUserInput] = useState("");
 
   function handleToggleRules() {
     setIsRulesShowing(!isRulesShowing);
+  }
+
+  function isInputEmpty() {
+    return userInput === "";
+  }
+
+  function handleVowelCheckResults(e: FormEvent) {
+    e.preventDefault();
+
+    if (isInputEmpty()) {
+      setHasInvalidInput(true);
+      return;
+    }
+
+    setHasInvalidInput(false);
+  }
+
+  function handleUpdateInput(e: React.ChangeEvent<HTMLInputElement>) {
+    setUserInput(e.target.value);
   }
 
   return (
@@ -39,23 +60,29 @@ function App() {
         </div>
       )}
 
-      <form className="container phrase-container">
+      <form
+        onSubmit={handleVowelCheckResults}
+        className="container phrase-container"
+      >
         <label className="phrase-label" htmlFor="phrase">
-          Provide a word, phrase or sentence:
+          Provide a word or phrase:
         </label>
         <div className="input-btn-container">
           <input
+            onChange={(e) => handleUpdateInput(e)}
+            value={userInput}
             className="phrase-input"
             id="phrase"
             type="text"
-            placeholder="e.g. racecar, Kitty Ipsum, I love to code"
-            required
+            placeholder="e.g. racecar, Kitty Ipsum"
           />
-
-          <button className="check-phrase-btn" type="button">
-            Check
-          </button>
+          <button className="check-phrase-btn">Check</button>
         </div>
+        {hasInvalidInput && (
+          <p className="input-error-msg">
+            Please provide a word, or phrase to check.
+          </p>
+        )}
       </form>
     </main>
   );

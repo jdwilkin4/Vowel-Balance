@@ -110,6 +110,12 @@ h1 span:last-of-type {
   outline: 4px solid var(--sea-green);
 }
 
+.input-error-msg {
+  margin-top: 15px;
+  color: var(--red);
+  text-align: center;
+}
+
 .check-phrase-btn {
   padding: 10px;
   border: none;
