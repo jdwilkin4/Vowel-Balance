@@ -17,6 +17,7 @@ type Results = {
 function App() {
   const [isRulesShowing, setIsRulesShowing] = useState(false);
   const [hasInvalidInput, setHasInvalidInput] = useState<boolean>(false);
+  const [hasSingleSpaceInput, setHasSingleSpaceInput] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [results, setResults] = useState<Results>({
     firstHalf: "",
@@ -81,12 +82,26 @@ function App() {
       return;
     }
 
+    if (userInput === " ") {
+      setHasSingleSpaceInput(true);
+      setResults({
+        firstHalf: "",
+        secondHalf: "",
+        firstHalfVowelCount: null,
+        secondHalfVowelCount: null,
+        centerCharacter: null,
+        isBalanced: null,
+      });
+      return;
+    }
+
     setResults((prev) => ({
       ...prev,
       isBalanced: isStrBalanced(userInput),
     }));
 
     setHasInvalidInput(false);
+    setHasSingleSpaceInput(false);
   }
 
   function handleUpdateInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -143,8 +158,14 @@ function App() {
           <button className="check-phrase-btn">Check</button>
         </div>
         {hasInvalidInput && (
-          <p className="input-error-msg">
+          <p className="msg input-error-msg">
             Please provide a word, or phrase to check.
+          </p>
+        )}
+        {hasSingleSpaceInput && (
+          <p className="msg valid-single-space-msg">
+            A single space is balanced since the single character is ignored,
+            leaving zero vowels in both halves.
           </p>
         )}
       </form>
