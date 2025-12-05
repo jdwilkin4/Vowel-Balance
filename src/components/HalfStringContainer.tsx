@@ -18,18 +18,13 @@ export function HalfStrContainer({
   const charactersArr = resultString.split("");
 
   return (
-    <div
-      className={clsx(
-        "half-container",
-        containerName.split(" ")[0].toLowerCase() + "-half-container"
-      )}
-    >
+    <div className="half-container">
       <h2>{containerName}</h2>
       <p className="character-length">{characterLength} characters</p>
       <div className="list-of-characters-container">
-        {charactersArr.map((char) => (
+        {charactersArr.map((char, index) => (
           <div
-            key={`curr-char-${char}`}
+            key={`curr-char-${char}-${index}`}
             className={clsx("char", isVowel(char) && "vowel-char")}
           >
             {char}

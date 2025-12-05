@@ -2,9 +2,6 @@
   padding: 20px;
   border-radius: 15px;
   margin: 20px 0;
-}
-
-.first-half-container {
   background: linear-gradient(
     to bottom right,
     var(--cyan-soft),
@@ -12,10 +9,9 @@
   );
   border: 1px solid var(--cyan-strong);
   color: var(--light-grey);
-  transition: all 0.3s;
 }
 
-.first-half-container h2 {
+.half-container h2 {
   color: var(--aqua-blue);
 }
 
@@ -39,7 +35,7 @@
   border-radius: 10px;
 }
 
-.first-half-container .list-of-characters-container .vowel-char {
+.half-container .list-of-characters-container .vowel-char {
   background-color: var(--cyan-deep);
   color: var(--slate-darkest);
 }
@@ -48,13 +44,13 @@
   font-size: 1.1rem;
 }
 
-.first-half-container .vowel-count-container {
+.half-container .vowel-count-container {
   background-color: var(--slate-darkest);
   border-radius: 15px;
   padding: 10px;
 }
 
-.first-half-container .vowel-count-container p:last-of-type {
+.half-container .vowel-count-container p:last-of-type {
   color: var(--cyan-deep);
   font-size: 1.5rem;
   text-align: center;
