@@ -1,10 +1,29 @@
 import { useState, type FormEvent } from "react";
+import { Check, Equal, EqualNot, X } from "lucide-react";
+import clsx from "clsx";
 import "./App.css";
+
+type Results = {
+  firstHalf: string;
+  secondHalf: string;
+  firstHalfVowelCount: number | null;
+  secondHalfVowelCount: number | null;
+  centerCharacter: string | null;
+  isBalanced: boolean | null;
+};
 
 function App() {
   const [isRulesShowing, setIsRulesShowing] = useState(false);
   const [hasInvalidInput, setHasInvalidInput] = useState<boolean>(false);
   const [userInput, setUserInput] = useState("");
+  const [results, setResults] = useState<Results>({
+    firstHalf: "",
+    secondHalf: "",
+    firstHalfVowelCount: null,
+    secondHalfVowelCount: null,
+    centerCharacter: null,
+    isBalanced: null,
+  });
 
   function handleToggleRules() {
     setIsRulesShowing(!isRulesShowing);
@@ -14,13 +33,60 @@ function App() {
     return userInput === "";
   }
 
+  function getVowelCount(str: string) {
+    const vowels = new Set(["a", "e", "i", "o", "u"]);
+    let vowelCount = 0;
+
+    for (const char of str) {
+      if (vowels.has(char)) {
+        vowelCount++;
+      }
+    }
+
+    return vowelCount;
+  }
+
+  function isStrBalanced(str: string) {
+    const lowerCaseString = str.toLowerCase();
+    const middleIndex = Math.floor(lowerCaseString.length / 2);
+
+    const firstHalfStr = lowerCaseString.slice(0, middleIndex);
+    const secondHalfStr =
+      lowerCaseString.length % 2 != 0
+        ? lowerCaseString.slice(middleIndex + 1)
+        : lowerCaseString.slice(middleIndex);
+
+    setResults((prev) => ({
+      ...prev,
+      firstHalf: firstHalfStr,
+      firstHalfVowelCount: getVowelCount(firstHalfStr),
+      secondHalf: secondHalfStr,
+      secondHalfVowelCount: getVowelCount(secondHalfStr),
+    }));
+
+    return getVowelCount(firstHalfStr) === getVowelCount(secondHalfStr);
+  }
+
   function handleVowelCheckResults(e: FormEvent) {
     e.preventDefault();
 
     if (isInputEmpty()) {
       setHasInvalidInput(true);
+      setResults({
+        firstHalf: "",
+        secondHalf: "",
+        firstHalfVowelCount: null,
+        secondHalfVowelCount: null,
+        centerCharacter: null,
+        isBalanced: null,
+      });
       return;
     }
+
+    setResults((prev) => ({
+      ...prev,
+      isBalanced: isStrBalanced(userInput),
+    }));
 
     setHasInvalidInput(false);
   }
@@ -84,6 +150,29 @@ function App() {
           </p>
         )}
       </form>
+
+      {results.firstHalf && (
+        <>
+          <div
+            className={clsx(
+              "result-container",
+              results.isBalanced ? "balanced" : "unbalanced"
+            )}
+          >
+            {results.isBalanced ? (
+              <Check className="checkmark-icon" />
+            ) : (
+              <X className="error-icon" />
+            )}
+            <p>{results.isBalanced ? "Balanced" : "Unbalanced"} vowel count </p>
+            <p className="result-count">
+              {results.firstHalfVowelCount}{" "}
+              {results.isBalanced ? <Equal /> : <EqualNot />}{" "}
+              {results.secondHalfVowelCount}
+            </p>
+          </div>
+        </>
+      )}
     </main>
   );
 }
