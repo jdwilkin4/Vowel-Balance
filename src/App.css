@@ -172,3 +172,8 @@ h1 span:last-of-type {
   align-items: center;
   gap: 5px;
 }
+
+.first-second-half-containers {
+  display: flex;
+  flex-wrap: wrap;
+}

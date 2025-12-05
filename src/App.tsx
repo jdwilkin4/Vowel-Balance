@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Check, Equal, EqualNot, X } from "lucide-react";
+import { HalfStrContainer } from "./components/HalfStringContainer";
+import { isVowel } from "./utils";
 import clsx from "clsx";
 import "./App.css";
 
@@ -34,11 +36,10 @@ function App() {
   }
 
   function getVowelCount(str: string) {
-    const vowels = new Set(["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]);
     let vowelCount = 0;
 
     for (const char of str) {
-      if (vowels.has(char)) {
+      if (isVowel(char)) {
         vowelCount++;
       }
     }
@@ -167,6 +168,21 @@ function App() {
               {results.isBalanced ? <Equal /> : <EqualNot />}{" "}
               {results.secondHalfVowelCount}
             </p>
+          </div>
+
+          <div className="first-second-half-containers">
+            <HalfStrContainer
+              containerName="First Half"
+              resultString={results.firstHalf}
+              characterLength={results.firstHalf.length}
+              vowelCount={results.firstHalfVowelCount}
+            />
+            <HalfStrContainer
+              containerName="Second Half"
+              resultString={results.secondHalf}
+              characterLength={results.secondHalf.length}
+              vowelCount={results.secondHalfVowelCount}
+            />
           </div>
         </>
       )}
