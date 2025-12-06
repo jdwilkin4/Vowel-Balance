@@ -40,19 +40,19 @@
   color: var(--slate-darkest);
 }
 
-.vowel-count-container p {
-  font-size: 1.1rem;
-}
-
 .half-container .vowel-count-container {
   background-color: var(--slate-darkest);
   border-radius: 15px;
   padding: 10px;
 }
 
+.vowel-count-container p {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
 .half-container .vowel-count-container p:last-of-type {
   color: var(--cyan-deep);
   font-size: 1.5rem;
-  text-align: center;
   margin-top: 15px;
 }
