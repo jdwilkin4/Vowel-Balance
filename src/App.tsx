@@ -121,7 +121,7 @@ function App() {
   return (
     <main>
       <h1>
-        <span>Vowel</span> <span>Checker</span>
+        <span>Vowel</span> <span>Balance</span>
       </h1>
       <button className="toggle-rules-btn" onClick={handleToggleRules}>
         {isRulesShowing ? "Hide" : "Show"} Rules
